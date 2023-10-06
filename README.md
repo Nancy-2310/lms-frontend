@@ -32,7 +32,7 @@ npm i
 
 [Tailwind intructions official doc](https://tailwindcss.com/docs/installation)
 1. Install tailwind css
-npm install -D tailwindcss
+npm install -D tailwindcss postcss auotprefixer
 
 2. Create tailwind config file
 
@@ -44,7 +44,7 @@ npx tailwindcss init
 3. Add file extensions to tailwind config file in the contents property
 
 ```
-"./src/**/*.{html,js,jsx,ts,tsx}"
+"./src/**/*.{html,js,jsx,ts,tsx},"./index.html"
 
 ```
 4. Add the tailwind directives at the top o index.cs file
@@ -53,6 +53,12 @@ npx tailwindcss init
 @tailwind components;
 @tailwind utilities;
 
+5. Add the following details in the plugin property of tailwind config
+
+```
+[require("daisyui") , require("@tailwindcss/line-clamp")]
+
+```
 ### Adding plugins and dependencies
 
 ```
