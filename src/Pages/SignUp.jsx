@@ -1,11 +1,11 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import { BsPerson, BsPersonCircle } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import HomeLayout from "../Layouts/HomeLayout";
-import { createAccount } from "../Redux/Slices/AuthSlice";
+import { createAccount } from "../Redux/Slices/AuthSlice.js";
 
 function SignUp(){
 
@@ -48,41 +48,54 @@ function SignUp(){
         }
     }
     
-    function createNewAccount(event){
+    const createNewAccount = async (event) => {
         event.preventDefault();
-        if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.avatar){
-            toast.error("Please fill all the details");
-            return;
+    
+        // checking the empty fields
+        if (
+          !signupData.avatar ||
+          !signupData.email ||
+          !signupData.fullName ||
+          !signupData.password
+        ) {
+          toast.error("Please fill all the fields");
+          return;
         }
-
-        // Checking name field length
-        if(signupData.fullName.length < 5) {
-            toast.error("Name should be atleast of 5 characters");
-            return;
+    
+        // checking the name field length
+        if (signupData.fullName.length < 5) {
+          toast.error("Name should be atleast of 5 characters");
+          return;
         }
-
-        // Checking valid email
-        if(!signupData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)){
-            toast.error("Invalid email id");
-            return;
+    
+        // email validation using regex
+        if (
+          !signupData.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+        ) {
+          toast.error("Invalid email id");
+          return;
         }
-
-        // Checking password validation 
-        if(!signupData.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/)){
-            toast.error("Password should be 6 - 16 character long with atleasat a number and a special character");
-            return;
+    
+        // password validation using regex
+        if (!signupData.password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$/)) {
+          toast.error(
+            "Minimum password length should be 8 with Uppercase, Lowercase, Number and Symbol"
+          );
+          return;
         }
+    
 
-        const formData = new FormData();
-        formData.append("fullName", signupData.fullName);
-        formData.append("email", signupData.email);
-        formData.append("password", signupData.password);
-        formData.append("avatar", signupData.avatar);
+    const formData = new FormData();
+    formData.append("fullName", signupData.fullName);
+    formData.append("email", signupData.email);
+    formData.append("password", signupData.password);
+    formData.append("avatar", signupData.avatar);
 
-        // dispatch create account action
-        const response = await dispatch(createAccount(formData));
-        if(response.action.payload.success)
-            navigate("/");
+    // calling create account action
+    const res = await dispatch(createAccount(formData));
+
+    // redirect to login page if true
+    if (res.payload.success) navigate("/login");
 
         setSignupData({
             fullName: "",
