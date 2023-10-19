@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import HomeLayout from "../Layouts/HomeLayout";
+
 import HomePageImage from "../assets/Images/homePageMainImage.png";
+import HomeLayout from "../Layouts/HomeLayout";
 function HomePage() {
     return (
         <HomeLayout>
