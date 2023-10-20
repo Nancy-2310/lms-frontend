@@ -1,10 +1,11 @@
 // import { useState } from 'react'
 import './App.css'
 
-import { Routes } from 'react-router-dom'
+import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
 import AboutUs from "./Pages/AboutUs";
+import CourseList from './Pages/Course/CourseList';
 import HomePage from './Pages/HomePage';
 import Login from './Pages/Login';
 import NotFound from './Pages/NotFound';
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<HomePage />} ></Route>
         <Route path="/about" element={<AboutUs />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/courses" element={<CourseList />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element = {<NotFound />} /> 
       </Routes>
