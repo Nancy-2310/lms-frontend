@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
+import {isEmail, isValidPassword} from "../Helpers/regexMatcher"
 import Layout from "../Layouts/HomeLayout";
 import login  from "../Redux/Slices/AuthSlice.js";
 

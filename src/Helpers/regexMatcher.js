@@ -1,5 +1,5 @@
 export function isEmail(string) {
-    return string.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/));
+    return string.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/);
 }
 
 export function isValidPassword(string) {
