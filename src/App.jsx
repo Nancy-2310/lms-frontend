@@ -4,6 +4,7 @@ import './App.css'
 import { Routes } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
+import RequireAuth from './Components/Auth/RequireAuth';
 import AboutUs from "./Pages/AboutUs";
 import Contact from './Pages/Contact';
 import CourseDescription from './Pages/Course/CourseDescription';
@@ -26,6 +27,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/course/description" element={<CourseDescription />} />
         <Route path="/login" element={<Login />} />
+        <Route element = {<RequireAuth allowedRoles={["ADMIN"]} />} />
         <Route path="*" element = {<NotFound />} /> 
       </Routes>
       
