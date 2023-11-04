@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Footer from '../Components/Footer';
-import { logout } from '../Redux/Slices/AuthSlice';
+import { logout } from '../Redux/Slices/AuthSlice.js';
 function HomeLayout({ children }){
     
     const dispatch = useDispatch();
@@ -30,8 +30,6 @@ function HomeLayout({ children }){
         e.preventDefault();
         const res = await dispatch(logout());
         if(res?.payload?.success)
-
-
         navigate("/");
     }
     
@@ -61,7 +59,7 @@ function HomeLayout({ children }){
                     <li>
                         <Link to="/">Home</Link>
                     </li>
-                      
+                    
                     {isLoggedIn && role == 'ADMIN' && (
                         <li>
                             <Link to="/admin/dashboard">Admin Dashboard</Link></li>)}
@@ -87,7 +85,7 @@ function HomeLayout({ children }){
                                 <Link to="/login">Login</Link>
                             </button>
                             <button className='btn-secondary px-4 py-1 font-semibold rounded-md w-full'>
-                                <Link to="/SignUp">Signup</Link>
+                                <Link to="/signup">Signup</Link>
                             </button>
                         </div>
                         </li>

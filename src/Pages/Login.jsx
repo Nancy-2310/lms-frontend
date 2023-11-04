@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {isEmail, isValidPassword} from "../Helpers/regexMatcher"
+
 import Layout from "../Layouts/HomeLayout";
-import login  from "../Redux/Slices/AuthSlice.js";
+import { login } from "../Redux/Slices/AuthSlice.js";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -87,6 +87,16 @@ const Login = () => {
             />
           </div>
 
+          {/* guest account access */}
+          <div
+            onClick={() =>
+              setLoginData({ email: "test@gmail.com", password: "Test@123" })
+            }
+            className="text-center link text-accent cursor-pointer"
+          >
+            Guest Login
+          </div>
+
           <button
             className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer"
             type="submit"
@@ -101,9 +111,9 @@ const Login = () => {
           </Link>
 
           <p className="text-center">
-            Do not have an account ?{" "}
+            Dont have an account ?{" "}
             <Link to={"/signup"} className="link text-accent cursor-pointer">
-              SignUp
+              Create Account
             </Link>
           </p>
         </form>

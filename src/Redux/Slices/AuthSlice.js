@@ -1,17 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 
-import axiosInstance from "../../Helpers/axiosInstance";
+import axiosInstance from "../../Helpers/axiosInstance.js";
 const initialState = {
-    isLoggedIn: localStorage.getItem('isLoggedIn') || false,
-    role: localStorage.getItem('role') || "",
-    data: localStorage.getItem('data') || {}
-
+    isLoggedIn: localStorage.getItem("isLoggedIn") || false,
+    role: localStorage.getItem("role") || "",
+    data: localStorage.getItem("data") || {},
 };
 
 export const createAccount = createAsyncThunk("/auth/signup", async(data) => {
     try {
-        let res = axiosInstance.post("user/register", data);
+        // console.log(data.get("fullName"));
+        // console.log(data.getAll());
+        const res = axiosInstance.post("user/register", data);
+        console.log(`${res} , res`);
         toast.promise(res, {
             loading: "Wait! creating your account",
             success: (data) => {
@@ -19,10 +21,11 @@ export const createAccount = createAsyncThunk("/auth/signup", async(data) => {
             },
             error: "Failed to create account"
         });
-        res = await res;
-        return res.data;
+        
+        // console.log("auth slice",res)
+        return (await res).data;
     }catch(error) {
-        toast.error(error?.response?.message);
+        toast.error(error?.response?.data?.message);
     }
 })
 
@@ -43,22 +46,22 @@ export const login = createAsyncThunk("/auth/login", async(data) => {
     }
 })
 
-export const logout = createAsyncThunk("/auth/logout", async(data) => {
+export const logout = createAsyncThunk("/auth/logout", async () => {
     try {
-        let res = axiosInstance.post("user/logout", data);
+        const res = axiosInstance.post("user/logout");
         toast.promise(res, {
-            loading: "Wait! logout in progress ...",
-            success: (data) => {
+            loading: "Wait! logout in progress ...",success: (data) => {
                 return data?.data?.message;
             },
-            error: "Failed to logout"
+            error: "Failed to log out"
         });
-        res = await res;
-        return res.data;
+       
+        return (await res).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
     }
 })
+
 const authSlice = createSlice({
     name:"auth",
     initialState,
@@ -82,5 +85,5 @@ const authSlice = createSlice({
     }
 });
 
-// export const {} = authSlice.actions;
+
 export default authSlice.reducer;
