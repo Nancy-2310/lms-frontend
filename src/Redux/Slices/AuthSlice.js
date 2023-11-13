@@ -84,5 +84,14 @@ const authSlice = createSlice({
     }
 });
 
+// function to fetch user data
+export const getUserData = createAsyncThunk("/user/details", async () => {
+    try {
+      const res = await axiosInstance.get("/user/me");
+      return res?.data;
+    } catch (error) {
+      toast.error(error.message);
+    }
+  });
 
 export default authSlice.reducer;
