@@ -1,6 +1,7 @@
 import './App.css';
 
-import { Route,Routes } from 'react-router-dom';
+// import React from "react";
+import { Route, Routes } from 'react-router-dom';
 
 import RequireAuth from './Components/Auth/RequireAuth';
 import AboutUs from "./Pages/AboutUs";
@@ -17,26 +18,35 @@ import Profile from './Pages/User/Profile';
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/denied" element={<Denied />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/course/description" element={<CourseDescription />} />
-        <Route path="/login" element={<Login />} />
 
-        <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
-          <Route path="/course/create" element={<CreateCourse />} />
-        </Route>
+    <Routes>
+     
+      <Route path="/" element={<HomePage />} />
+      <Route path="/about" element={<AboutUs />} />
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/denied" element={<Denied />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/course/description" element={<CourseDescription />} />
+      <Route path="/login" element={<Login />} />
 
-        <Route element={<RequireAuth allowedRoles={["USER", "ADMIN"]} />}>
-          <Route path='/user/profile' element={<Profile />} />
-        </Route>
+      {/* Use the Route component within the Routes component for nested routes */}
+      <Route
+        path="/course/create"
+        element={<RequireAuth allowedRoles={["ADMIN"]} />}
+      >
+        <Route index element={<CreateCourse />} />
+      </Route>
 
+      {/* Use the Route component within the Routes component for nested routes */}
+      <Route
+        path="/user/profile"
+        element={<RequireAuth allowedRoles={["USER", "ADMIN"]} />}
+      >
+        <Route index element={<Profile />} />
+      </Route>
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
     </>
   );
 }

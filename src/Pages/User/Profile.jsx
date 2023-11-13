@@ -1,7 +1,4 @@
-function Profile() {
-    console.log("error");
-    return "Profile";
-    
-}
+import { useSelector } from "react-redux";
+
 
 export default Profile;
