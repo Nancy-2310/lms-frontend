@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
-import axiosInstance from "../Helpers/axiosInstance.js";
+import axiosInstance from "../../Helpers/axiosInstance.js";
 
 const initialState = {
   key: "",
@@ -15,7 +15,7 @@ const initialState = {
 // function to get the api key
 export const getRazorPayId = createAsyncThunk("/razorPayId/get", async () => {
   try {
-    const res = await axiosInstance.get("/payments/razorpay-key");
+    // const res = await axiosInstance.get("/payments/razorpay-key");
     return res.data;
   } catch (error) {
     toast.error("Failed to load data");
@@ -121,5 +121,4 @@ const razorpaySlice = createSlice({
   },
 });
 
-export const {} = razorpaySlice.actions;
 export default razorpaySlice.reducer;
