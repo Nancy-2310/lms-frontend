@@ -1,18 +1,22 @@
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Layout from "../../Layouts/HomeLayout";
 import { getUserData } from "../../Redux/Slices/AuthSlice.js";
-
+import { cancelCourseBundle } from "../../Redux/Slices/RazorpaySlice.js";
 const Profile = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const userData = useSelector((state) => state?.auth?.data);
 
   // function to handle the cancel subscription of course
   const handleCourseCancelSubscription = async () => {
+    await dispatch(cancelCourseBundle());
     await dispatch(getUserData());
+    toast.success("Cancellation Completed!");
+    navigate("/");
   };
 
   useEffect(() => {

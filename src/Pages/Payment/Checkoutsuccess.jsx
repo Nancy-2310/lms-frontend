@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillCheckCircle } from "react-icons/ai";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import Layout from "../../Layouts/HomeLayout";
+import { getUserData } from "../../Redux/Slices/AuthSlice";
 
 const CheckoutFailure = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserData);
+  })
   return (
     <Layout>
       {/* container for checkout success card  */}
