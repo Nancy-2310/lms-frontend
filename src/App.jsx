@@ -8,6 +8,7 @@ import AboutUs from "./Pages/AboutUs";
 import Contact from './Pages/Contact';
 import CourseDescription from './Pages/Course/CourseDescription';
 import CreateCourse from './Pages/Course/CreateCourse';
+import AddLectures from './Pages/Dashboard/Addlecture';
 import DisplayLectures from './Pages/Dashboard/Displaylectures';
 import Denied from './Pages/Denied';
 import HomePage from './Pages/HomePage';
@@ -81,6 +82,13 @@ function App() {
         element={<RequireAuth allowedRoles={["USER", "ADMIN"]} />}
       >
         <Route index element={<DisplayLectures />} />
+      </Route>
+
+      <Route
+        path="/course/addlecture"
+        element={<RequireAuth allowedRoles={["ADMIN"]} />}
+      >
+        <Route index element={<AddLectures />} />
       </Route>
 
 
