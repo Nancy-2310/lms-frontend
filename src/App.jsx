@@ -16,6 +16,7 @@ import Denied from './Pages/Denied';
 import HomePage from './Pages/HomePage';
 import Login from './Pages/Login';
 import NotFound from './Pages/NotFound';
+import ChangePassword from './Pages/Password/ChangePassword';
 import Checkout from './Pages/Payment/Checkout';
 import CheckoutFailure from './Pages/Payment/Checkoutfail';
 import CheckoutSuccess from './Pages/Payment/Checkoutsuccess';
@@ -87,6 +88,12 @@ function App() {
         <Route index element={<DisplayLectures />} />
       </Route>
 
+      <Route
+        path="/changepassword"
+        element={<RequireAuth allowedRoles={["USER", "ADMIN"]} />}
+      >
+        <Route index element={<ChangePassword />} />
+      </Route>
       <Route
         path="/course/addlecture"
         element={<RequireAuth allowedRoles={["ADMIN"]} />}

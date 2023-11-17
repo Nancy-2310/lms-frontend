@@ -104,6 +104,30 @@ export const getUserData = createAsyncThunk("/user/details", async () => {
     }
   });
 
+  // function to change user password
+export const changePassword = createAsyncThunk(
+    "/auth/changePassword",
+    async (userPassword) => {
+      try {
+        let res = axiosInstance.post("/user/change-password", userPassword);
+  
+        await toast.promise(res, {
+          loading: "Loading...",
+          success: (data) => {
+            return data?.data?.message;
+          },
+          error: "Failed to change password",
+        });
+  
+        // getting response resolved here
+        res = await res;
+        return res.data;
+      } catch (error) {
+        toast.error(error?.response?.data?.message);
+      }
+    }
+  );
+  
 // function to update user profile
 export const updateProfile = createAsyncThunk(
   "/user/update/profile",
