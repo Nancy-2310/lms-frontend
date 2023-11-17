@@ -17,6 +17,8 @@ import HomePage from './Pages/HomePage';
 import Login from './Pages/Login';
 import NotFound from './Pages/NotFound';
 import ChangePassword from './Pages/Password/ChangePassword';
+import ForgetPassword from './Pages/Password/ForgotPassword';
+import ResetPassword from './Pages/Password/ResetPassword';
 import Checkout from './Pages/Payment/Checkout';
 import CheckoutFailure from './Pages/Payment/Checkoutfail';
 import CheckoutSuccess from './Pages/Payment/Checkoutsuccess';
@@ -94,6 +96,19 @@ function App() {
       >
         <Route index element={<ChangePassword />} />
       </Route>
+ 
+      <Route
+        path="/reset-password/:resetToken"
+      >
+        <Route index element={<ResetPassword />} />
+      </Route>
+
+      <Route
+        path="/forgetpassword"
+      >
+        <Route index element={<ForgetPassword />} />
+      </Route>
+
       <Route
         path="/course/addlecture"
         element={<RequireAuth allowedRoles={["ADMIN"]} />}
