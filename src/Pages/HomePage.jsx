@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import HomePageImage from "../assets/Images/homePageMainImage.png";
 import HomeLayout from "../Layouts/HomeLayout";
 function HomePage() {
+
+    const navigate = useNavigate();
     return (
         <HomeLayout>
             <div className="pt-10 text-amber-400 flex items-center justify-center gap-10 mx-16 h-[90vh]">
@@ -19,7 +21,7 @@ function HomePage() {
 
                 <div className="space-x-6">
                     <Link to="/courses">
-                        <button className="bg-yellow-500 px-5 py-3 rounded-md text-white font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+                        <button onClick = {() => navigate("/course")} className="bg-yellow-500 px-5 py-3 rounded-md text-white font-semibold text-lg cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
                             Explore Courses
                         </button>
                     </Link>

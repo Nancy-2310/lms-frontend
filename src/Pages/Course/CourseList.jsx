@@ -9,11 +9,13 @@ function CourseList(){
 
     const {courseData} = useSelector((state) => state.course);
     
-    async function loadCourses(){
-        await dispatch(getAllCourses);
-    }
+    // async function loadCourses(){
+    //     await dispatch(getAllCourses);
+    // }
     useEffect(() => {
-        loadCourses();
+        (async () => {
+            await dispatch(getAllCourses());
+        })();
     }, []);
 
 return (

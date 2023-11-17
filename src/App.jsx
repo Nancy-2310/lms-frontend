@@ -7,8 +7,10 @@ import RequireAuth from './Components/Auth/RequireAuth';
 import AboutUs from "./Pages/AboutUs";
 import Contact from './Pages/Contact';
 import CourseDescription from './Pages/Course/CourseDescription';
+import CourseList from './Pages/Course/CourseList';
 import CreateCourse from './Pages/Course/CreateCourse';
 import AddLectures from './Pages/Dashboard/Addlecture';
+import AdminDashboard from './Pages/Dashboard/AdminDashboard';
 import DisplayLectures from './Pages/Dashboard/Displaylectures';
 import Denied from './Pages/Denied';
 import HomePage from './Pages/HomePage';
@@ -31,6 +33,7 @@ function App() {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/denied" element={<Denied />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/courses" element={<CourseList />} />
       <Route path="/course/description" element={<CourseDescription />} />
       <Route path="/login" element={<Login />} />
 
@@ -92,6 +95,12 @@ function App() {
       </Route>
 
 
+      <Route
+        path="/admin/dashboard"
+        element={<RequireAuth allowedRoles={["ADMIN"]} />}
+      >
+        <Route index element={<AdminDashboard />} />
+      </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
     </>
